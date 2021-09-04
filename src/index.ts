@@ -249,8 +249,8 @@ async function fetchTimetables(
 
     const boxes: Record<string, Box> = Object.fromEntries(
       data.boxList
-        .filter((b) => b.type === "Lesson")
-        .map((b) => [b.lessonGuids[0], b])
+        ?.filter((b) => b.type === "Lesson")
+        .map((b) => [b.lessonGuids[0], b]) ?? []
     );
 
     const d = DateTime.fromObject({
@@ -322,6 +322,7 @@ inquirer
       type: "input",
       message: "Username",
       name: "username",
+      validate: (u) => u.length > 0,
     },
     {
       type: "password",

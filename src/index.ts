@@ -34,7 +34,7 @@ async function login(
   await page.type("input[name=password]", password);
   await page.click("button[type=submit]");
 
-  const dontStaySignedInSelector = "input[type=button][value=No]";
+  const dontStaySignedInSelector = "input#idBtn_Back";
   await page.waitForSelector(dontStaySignedInSelector);
   await page.click(dontStaySignedInSelector);
 
@@ -292,7 +292,7 @@ async function fetchTimetables(
     await Promise.all(weekNumbers.map((w) => getLessons(w, year)))
   ).flat();
 
-	console.log(`Parsed ${lessons.length} lessons`);
+  console.log(`Parsed ${lessons.length} lessons`);
 
   const csv = lessonsToCsv(lessons);
 
